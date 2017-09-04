@@ -6,7 +6,7 @@ function TeamRed (props) {
             <h2>Red Team Players</h2>
             <div className="innerDiv">
                 <ol>
-                    <li>Red Team First Player</li>
+                    <li>{props.redTeam}</li>
                 </ol>
                 <button className="tradePlayerButton">Trade Player</button>
                 <button className="freeAgentButton">Free Agent</button>

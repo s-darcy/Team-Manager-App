@@ -16,8 +16,18 @@
 
 button {
     border-style: solid;
-    box-shadow: 2px 1.5px 1.5px 1px #888888;
+    box-shadow: 2px 1.5px 1.5px 1px #595757;
     font-weight: 700;
+    
+}
+
+.freeAgentButton, .tradePlayerButton, .resetButton, .redButton, .blueButton {
+    margin: 10px;
+    width: 95px;
+    height: 30px;
+    font-size: .80rem;
+    text-shadow: .5px .5px white;
+    padding-top: 6px;
 }
 
 p {
@@ -27,13 +37,6 @@ p {
 .teamRed, .teamBlue, .freeAgents, .addNewPlayer, .resetTeam {
     max-width: 650px;
     margin: auto;
-}
-
-.freeAgentButton, .tradePlayerButton, .resetButton, .redButton, .blueButton {
-    margin: 10px;
-    width: 80px;
-    height: 40px;
-    font-size: .85rem;
 }
 
 .teamRed, .teamBlue, .freeAgents {
@@ -59,10 +62,11 @@ p {
 
 .teamRed li, .teamBlue li, .freeAgents li {
     list-style: unset;
+    padding: 5px 0px;
 }
 
 .teamRed h2 {
-    color: red;
+    color: #AE1414;
 }
 
 .teamBlue h2 {
@@ -70,7 +74,7 @@ p {
 }
 
 .redButton {
-    color: red;
+    color: #AE1414;
 }
 
 .blueButton {

@@ -8,6 +8,7 @@ function AddNewPlayers (props) {
             <form>
                 <label>Add Player Name </label>
                 <input />
+                <input type="submit"/>
             </form>
         </div>
     );

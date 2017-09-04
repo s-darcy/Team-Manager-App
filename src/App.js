@@ -6,6 +6,7 @@ import TeamBlue from './TeamBlue';
 import FreeAgents from './FreeAgents';
 import AddNewPlayers from './AddNewPlayers';
 import ResetTeams from './ResetTeams';
+import data from './data';
 
 class App extends Component {
     
@@ -20,7 +21,6 @@ class App extends Component {
             <FreeAgents />
             <AddNewPlayers />
             <ResetTeams />
-
         </div> 
     );
   }
