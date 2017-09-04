@@ -7,7 +7,7 @@ function FreeAgents (props) {
             <p>These players are currently unassigned to either team. Would like to add them to a team?</p>
             <div className="innerDiv">
                 <ol className="unassignedPlayers">
-                    <li>{props.playersUnassigned}</li>
+                    <li>{props.playersUnassigned }</li>
                 </ol>
                 <button className="redButton">Red Team</button>
                 <button className="blueButton">Blue Team</button>
