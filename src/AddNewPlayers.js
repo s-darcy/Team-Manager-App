@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function AddNewPlayers (props) {
     return (
@@ -7,11 +8,21 @@ function AddNewPlayers (props) {
             <p>When adding players, they will be first inserted into the 'Free Agents' section. From there you can assign them to either team.</p>
             <form>
                 <label>Add Player Name </label>
-                <input />
-                <input type="submit"/>
+                <input 
+                    placeholder="New Player"
+                    value={props.newPlayerText} 
+                />
+                <input 
+                    className="submitButton" 
+                    type="submit"
+                />
             </form>
         </div>
     );
-}            
+}
+
+AddNewPlayers.PropTypes ={
+   addNewPlayers : PropTypes.string 
+};
             
 export default AddNewPlayers;            
