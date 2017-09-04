@@ -9,8 +9,7 @@ function AddNewPlayers (props) {
             <form>
                 <label>Add Player Name </label>
                 <input 
-                    placeholder="New Player"
-                    value={props.newPlayerText} 
+                    placeholder="New Player" 
                 />
                 <input 
                     className="submitButton" 

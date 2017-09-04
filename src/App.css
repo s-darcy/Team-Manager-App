@@ -34,6 +34,23 @@ p {
     margin: 5px auto;
 }
 
+.playersUnassigned {
+    display: block;
+    max-width: 550px;
+    text-align: left;
+    width: 100%;
+}
+
+.playersUnassigned li {
+    margin: 4px;
+    display: inline-block;
+}
+
+.playersUnassigned li::after { 
+    content: "   |";
+    font-size: 1.9rem;
+}
+
 .teamRed, .teamBlue, .freeAgents, .addNewPlayer, .resetTeam {
     max-width: 650px;
     margin: auto;

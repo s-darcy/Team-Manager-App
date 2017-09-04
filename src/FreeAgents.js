@@ -6,9 +6,9 @@ function FreeAgents (props) {
             <h2>Free Agents</h2>
             <p>These players are currently unassigned to either team. Would like to add them to a team?</p>
             <div className="innerDiv">
-                <ol className="unassignedPlayers">
-                    <li>{props.playersUnassigned }</li>
-                </ol>
+                <ul>
+                    <li>{props.newPlayerAdder}</li>
+                </ul>
                 <button className="redButton">Red Team</button>
                 <button className="blueButton">Blue Team</button>
             </div>

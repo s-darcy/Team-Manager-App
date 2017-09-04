@@ -1,4 +1,5 @@
 import React from 'react';
+import data from './data';
 
 function TeamRed (props) {
     return (
@@ -6,7 +7,7 @@ function TeamRed (props) {
             <h2>Red Team Players</h2>
             <div className="innerDiv">
                 <ol>
-                    <li>{props.redTeam}</li>
+                    <li>{props.reds}</li>
                 </ol>
                 <button className="tradePlayerButton">Trade Player</button>
                 <button className="freeAgentButton">Free Agent</button>

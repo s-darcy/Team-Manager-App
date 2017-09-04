@@ -16,22 +16,28 @@ const data = {
         {"name": "Jeff Francoeur", "position": "right field"},
         {"name": "Brian McCann", "position": "catcher"},
         {"name": "Brian Jordan", "position": "left field"},
-        {"name": "Tim Huddson", "position": "pitcher"},
-        {"name": "John Smoltz", "position": "pitcher"},
-        {"name": "Martin Prado", "position": "third base"}  
+        {"name": "Tim Huddson", "position": "pitcher"}
     ],
     "redTeam" : {
+        "redAquired": [
+            {"name": "Martin Prado", "position": "third base"}  
+        ],
         "title": "Red Team",
         "playerTurn": 0,
         "redTeamCount": 0
     },
     "blueTeam": {
+        "blueAquired": [
+            {"name": "John Smoltz", "position": "pitcher"}
+        ],
         "title": "Blue Team",
         "playerTurn": 0,
         "blueTeamCount": 0 
     },
     "freeAgents" : {
-        "freeAgentCount": 0 
+        "freeAgentAquired": [],
+        "freeAgentCount": 0,
+        "newPlayerName":''
     },
     "addNewPlayers" : {
         "newPlayerName" : '',

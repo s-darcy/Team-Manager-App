@@ -14,31 +14,68 @@ class App extends Component {
         super();
         this.state = data;
         this.newPlayerAdder = this.newPlayerAdder.bind(this);
+        this.redTeamSetUp = this.redTeamSetUp.bind(this);
+    }
+    
+    redTeamSetUp (players) {
+        let theReds = this.state.redTeam.redAquired.name.slice();
+        
+        this.setState({
+            players: players
+        }); 
     }
 
-    newPlayerAdder (event){
+    newPlayerAdder (event, players){
         let newPlayerName = event.target.value;
+        let existingPlayers = Object.assign({}, this.state.players); 
+        existingPlayers.freeAgents.newPlayerName = newPlayerName;
         
+        this.setState({
+            newPlayerName: players
+        });
     }
     
     render() {
         const playersUnassigned = 
         this.state.players.map(function(player, index){
             return (
-                <ul>
-                    <li>{player.name}</li>
-                </ul>
+                    <li >{player.name}</li>
             );
-    }, this);
+        }, this);
+        
+        const redplayers = 
+        this.state.redTeam.redAquired.map(function(player, index){
+            return (
+                    <li >{player.name}</li>
+            );
+        }, this);
+        
+            const blueplayers = 
+        this.state.blueTeam.blueAquired.map(function(player, index){
+            return (
+                    <li >{player.name}</li>
+            );
+      }, this);    
 
     return (
 
         <div id="container">
             <h1 id="teamManagerApp">Team Manager App</h1>
-            <TeamRed />
+            <TeamRed
+                redTeamSetUp = {this.redTeamSetUp}
+                redTeam={this.state.redTeam.redAquired[0].redTeam}
+            />
+                <ol>
+                    {redplayers}
+                </ol>
             <TeamBlue />
+                <ol>
+                    {blueplayers}
+                </ol>
             <FreeAgents  />
-            {playersUnassigned}
+                <ol className="playersUnassigned">
+                    {playersUnassigned}
+                </ol>
             <AddNewPlayers />
             <ResetTeams />
         </div> 
