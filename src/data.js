@@ -34,11 +34,6 @@ const data = {
         "playerTurn": 0,
         "blueTeamCount": 0 
     },
-    "freeAgents" : {
-        "freeAgentAcquired": [],
-        "freeAgentCount": 0,
-        "newPlayerName":''
-    },
     "addNewPlayers" : {
         "newPlayerName" : '',
         "newPlayerCount" : 0

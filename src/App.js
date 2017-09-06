@@ -10,47 +10,55 @@ import data from './data';
 
 class App extends Component {
     
-    
-
     constructor() {
         super();
         this.state = data;
 
         console.log(data);
         this.newPlayerAdder = this.newPlayerAdder.bind(this);
-        this.redTeamSetUp = this.redTeamSetUp.bind(this);
+//        this.redTeamSetUp = this.redTeamSetUp.bind(this);
+        this.tradeToBlue = this.tradeToBlue.bind(this);
     }
-
-    
-    redTeamSetUp (players) {
-        let theReds = this.state.redTeam.redAquired.name.slice();
-        
-        this.setState({
-            players: players
-        }); 
-    }
+  
+//    redTeamSetUp (players) {
+//        let theReds = this.state.redTeam.redAquired;
+//        
+//        this.setState({
+//            players: players
+//        }); 
+//    }
 
     newPlayerAdder (event, players){
-        let newPlayerName = event.target.value;
-        let existingPlayers = Object.assign({}, this.state.players); 
-        existingPlayers.freeAgents.newPlayerName = newPlayerName;
+        event.preventDefault();
+        
+        let newPlayer = {"name": event.target.inputName.value, "position": ""};
+        let existingPlayers = this.state.players;
+        
+        
+        existingPlayers.push(newPlayer);
         
         this.setState({
-            newPlayerName: players
+            "players": existingPlayers
         });
     }
     
     tradeToBlue (){
         //Grab the current Red team
-        let theReds = this.state.redTeam.redAquired.name.slice();
+        console.log(this.state);
+        let theReds = this.state.redTeam.redAcquired;
         console.log(theReds);
-        //remove the selected player from the Reds array
+        
         //add that same player to the Blue team array
+        
+        
+        //remove the selected player from the Reds array
+        
+        
         //save state
     }
     
     render() {
-        
+        this.tradeToBlue();
 //        //Original Teams
 //        const originalTeams = data.slice();
 //        
@@ -66,7 +74,9 @@ class App extends Component {
                 return (
                     <FreeAgents 
                        key={index}
-                       bravesPlayer={player} 
+                       index={index}    
+                       bravesPlayer={player}
+//                       newPlayerAdder={()=>{this.newPlayerAdder(index);}}
                     />
                     
                 );
@@ -107,7 +117,9 @@ class App extends Component {
                     {playersUnassigned}
                 </div>
             </div>    
-            <AddNewPlayers />
+            <AddNewPlayers 
+                newPlayerAdder={this.newPlayerAdder}
+            />
             <ResetTeams />
         </div> 
     );
