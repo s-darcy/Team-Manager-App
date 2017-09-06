@@ -19,7 +19,7 @@ const data = {
         {"name": "Tim Huddson", "position": "pitcher"}
     ],
     "redTeam" : {
-        "redAquired": [
+        "redAcquired": [
             {"name": "Martin Prado", "position": "third base"}  
         ],
         "title": "Red Team",
@@ -27,7 +27,7 @@ const data = {
         "redTeamCount": 0
     },
     "blueTeam": {
-        "blueAquired": [
+        "blueAcquired": [
             {"name": "John Smoltz", "position": "pitcher"}
         ],
         "title": "Blue Team",
@@ -35,7 +35,7 @@ const data = {
         "blueTeamCount": 0 
     },
     "freeAgents" : {
-        "freeAgentAquired": [],
+        "freeAgentAcquired": [],
         "freeAgentCount": 0,
         "newPlayerName":''
     },

@@ -17,6 +17,8 @@ class App extends Component {
         this.redTeamSetUp = this.redTeamSetUp.bind(this);
     }
     
+
+    
     redTeamSetUp (players) {
         let theReds = this.state.redTeam.redAquired.name.slice();
         
@@ -35,35 +37,43 @@ class App extends Component {
         });
     }
     
+
+    
     render() {
+
         const playersUnassigned = 
-        this.state.players.map(function(player, index){
-            return (
-                    <li >{player.name}</li>
-            );
-        }, this);
+            this.state.players.map((player, index) => {
+                return (
+                    <FreeAgents 
+                       key={index}
+                       bravesPlayer={player} 
+                    />
+                    
+                );
+            }, this);
         
         const redplayers = 
-        this.state.redTeam.redAquired.map(function(player, index){
+        this.state.redTeam.redAcquired.map(function(player, index){
             return (
                     <li >{player.name}</li>
             );
         }, this);
         
             const blueplayers = 
-        this.state.blueTeam.blueAquired.map(function(player, index){
+        this.state.blueTeam.blueAcquired.map(function(player, index){
             return (
                     <li >{player.name}</li>
             );
       }, this);    
 
+        
+        console.log(this.state);
     return (
 
         <div id="container">
             <h1 id="teamManagerApp">Team Manager App</h1>
             <TeamRed
-                redTeamSetUp = {this.redTeamSetUp}
-                redTeam={this.state.redTeam.redAquired[0].redTeam}
+                
             />
                 <ol>
                     {redplayers}
@@ -72,10 +82,13 @@ class App extends Component {
                 <ol>
                     {blueplayers}
                 </ol>
-            <FreeAgents  />
-                <ol className="playersUnassigned">
+            <div className="freeAgents">
+            <h2>Free Agents</h2>
+                <p>These players are currently unassigned to either team. Would like to add them to a team?</p>
+                <div className="innerDiv">
                     {playersUnassigned}
-                </ol>
+                </div>
+            </div>    
             <AddNewPlayers />
             <ResetTeams />
         </div> 
