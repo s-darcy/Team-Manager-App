@@ -9,10 +9,12 @@ class TeamRed extends Component {
                 <h2>Red Team Players</h2>
                 <div className="innerDiv">
                     <ol>
-                        <li>{}</li>
+                        <li className="assignedPlayers">{this.props.redsPlayer.name}
+                            <button className="tradePlayerButton">Trade</button>
+                            <button className="freeAgentButton">Free</button>
+                        </li>
                     </ol>
-                    <button className="tradePlayerButton">Trade Player</button>
-                    <button className="freeAgentButton">Free Agent</button>
+
                 </div>
             </div>
         );

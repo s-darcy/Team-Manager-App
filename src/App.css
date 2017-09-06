@@ -23,15 +23,38 @@ button {
 
 .freeAgentButton, .tradePlayerButton, .resetButton, .redButton, .blueButton {
     margin: 10px;
-    width: 95px;
-    height: 30px;
-    font-size: .80rem;
+    width: 50px;
+    height: 20px;
+    font-size: .70rem;
     text-shadow: .5px .5px white;
-    padding-top: 6px;
 }
 
 p {
     margin: 5px auto;
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+.bravesPlayers {
+    display: inline-block;
+    font-size: 1.15rem;
+}
+
+.assignedPlayers {
+    font-size: 1.15rem;
+    text-align: center;
+}
+
+.freeAgents {
+    display: block;
+}
+
+.freeAgents p {
+    text-align: center;
+}
+
+.freeAgentColumns {
+   column-count: 2;
 }
 
 .playersUnassigned {

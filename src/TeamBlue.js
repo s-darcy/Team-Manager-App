@@ -8,10 +8,12 @@ class TeamBlue extends Component {
                 <h2>Blue Team Players</h2>
                 <div className="innerDiv">
                     <ol>
-                        <li>Blue Team First Player</li>
+                        <li className="assignedPlayers">{this.props.bluesPlayer.name}
+                            <button className="tradePlayerButton">Trade</button>
+                            <button className="freeAgentButton">Free</button>
+                        </li>
                     </ol>
-                    <button className="tradePlayerButton">Trade Player</button>
-                    <button className="freeAgentButton">Free Agent</button>
+
                 </div>
             </div>
         );

@@ -5,13 +5,12 @@ class FreeAgents extends Component {
     render(){
         
         return (
-
-                    <ul>
-                        <li>{this.props.bravesPlayer.name}</li>
-                        <button className="redButton">Red Team</button>
-                        <button className="blueButton">Blue Team</button>
-                    </ul>  
-
+            <ul>
+                <li className="bravesPlayers">{this.props.bravesPlayer.name}
+                    <button onClick={this.tradeToBlue}className="redButton">Red</button>
+                    <button className="blueButton">Blue</button>
+                </li>    
+            </ul>  
         );    
     }            
 }            
