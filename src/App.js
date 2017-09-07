@@ -27,14 +27,25 @@ class App extends Component {
 //            players: players
 //        }); 
 //    }
+    
+//    var styles = {
+//      box: {
+//        width: '100px',
+//        height: '100px'
+//      },
+//      in: {
+//        backgroundColor: 'red'
+//      },
+//      out: {
+//        backgroundColor: 'green'
+//      }
+//    };
 
     newPlayerAdder (event, players){
         event.preventDefault();
         
         let newPlayer = {"name": event.target.inputName.value, "position": ""};
         let existingPlayers = this.state.players;
-        
-        
         existingPlayers.push(newPlayer);
         
         this.setState({
@@ -42,23 +53,26 @@ class App extends Component {
         });
     }
     
-    tradeToBlue (){
-        //Grab the current Red team
-        console.log(this.state);
-        let theReds = this.state.redTeam.redAcquired;
-        console.log(theReds);
+    tradeToBlue (i, event){
+        event.preventDefault();
+        console.log('The link was clicked.');
+        
+        //the player clicked on the Red Team
+        let tradingRedPlayer = event.currentTarget.value;
+        console.log(tradingRedPlayer);
         
         //add that same player to the Blue team array
+        console.log(this.state.blueTeam.blueAcquired.push(tradingRedPlayer));
         
         
         //remove the selected player from the Reds array
-        
-        
+        let redPlayerRemoved = this.state.redTeam.redAcquired.slice(tradingRedPlayer);
+        console.log(this.state.redTeam.redAcquired);
         //save state
     }
     
     render() {
-        this.tradeToBlue();
+        
 //        //Original Teams
 //        const originalTeams = data.slice();
 //        
@@ -68,13 +82,14 @@ class App extends Component {
 //                    {originalTeams}
 //                );
 //            }
-//        
+        
+        
+        
         const playersUnassigned = 
             this.state.players.map((player, index) => {
                 return (
                     <FreeAgents 
-                       key={index}
-                       index={index}    
+                       key={index}    
                        bravesPlayer={player}
 //                       newPlayerAdder={()=>{this.newPlayerAdder(index);}}
                     />
@@ -87,7 +102,8 @@ class App extends Component {
                 return (
                    <TeamRed
                        key={index}
-                       redsPlayer={player} 
+                       redsPlayer={player}
+                       tradeToBlue={this.tradeToBlue}    
                     />
                 );
             }, this);
@@ -98,12 +114,11 @@ class App extends Component {
                         <TeamBlue 
                             key={index}
                             bluesPlayer={player}
+                            tradeToBlue={this.tradeToBlue}
                         />
                     );
               }, this);    
 
-        
-        console.log(this.state);
     return (
 
         <div id="container">
