@@ -75,13 +75,9 @@ p {
 }
 
 .teamRed, .teamBlue, .freeAgents, .addNewPlayer, .resetTeam {
-    max-width: 650px;
-    margin: auto;
-}
-
-.teamRed, .teamBlue, .freeAgents {
     border-style: solid;
-    margin: 10px;
+    max-width: 650px;
+    margin: 8px auto;
     padding: 5px;
 }
 

@@ -53,21 +53,39 @@ class App extends Component {
         });
     }
     
-    tradeToBlue (i, event){
+    tradeToBlue (redsPlayer, IDValue, event){
         event.preventDefault();
+        
+        //make copy of red Team's state with filter
+        let curRedTeam = this.state.redTeam.redAcquired;
+        
         console.log('The link was clicked.');
+        console.log(IDValue);
+        
+        
+        let newRedTeam = curRedTeam.filter(function(teamMember){
+            console.log(redsPlayer.name);
+            console.log(teamMember);
+            return teamMember.name != redsPlayer.name;
+        })
+        
+        
+        this.setState({
+            "this.redTeam" : newRedTeam
+        });
+        
+        console.log(newRedTeam);
         
         //the player clicked on the Red Team
-        let tradingRedPlayer = event.currentTarget.value;
-        console.log(tradingRedPlayer);
+        
         
         //add that same player to the Blue team array
-        console.log(this.state.blueTeam.blueAcquired.push(tradingRedPlayer));
+//        console.log(this.state.blueTeam.blueAcquired.push(tradingRedPlayer));
         
         
         //remove the selected player from the Reds array
-        let redPlayerRemoved = this.state.redTeam.redAcquired.slice(tradingRedPlayer);
-        console.log(this.state.redTeam.redAcquired);
+//        let redPlayerRemoved = this.state.redTeam.redAcquired.slice(tradingRedPlayer);
+
         //save state
     }
     
@@ -92,8 +110,7 @@ class App extends Component {
                        key={index}    
                        bravesPlayer={player}
 //                       newPlayerAdder={()=>{this.newPlayerAdder(index);}}
-                    />
-                    
+                    />  
                 );
             }, this);
         
@@ -102,6 +119,7 @@ class App extends Component {
                 return (
                    <TeamRed
                        key={index}
+                       IDValue={index} 
                        redsPlayer={player}
                        tradeToBlue={this.tradeToBlue}    
                     />
@@ -123,8 +141,22 @@ class App extends Component {
 
         <div id="container">
             <h1 id="teamManagerApp">Team Manager App</h1>
-                    {redplayers}
-                    {blueplayers}
+               <div className="teamRed">
+                    <h2>Red Team Players</h2>
+                    <div className="innerDiv">
+                        <ol>             
+                            {redplayers}
+                        </ol>
+                    </div>
+                </div>
+                <div className="teamBlue">
+                    <h2>Blue Team Players</h2>
+                    <div className="innerDiv">
+                        <ol>
+                            {blueplayers}
+                        </ol>
+                    </div>
+                </div>
             <div className="freeAgents">
             <h2>Free Agents</h2>
                 <p>These players are currently unassigned to either team. Would like to add them to a team?</p>
