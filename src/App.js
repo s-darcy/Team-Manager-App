@@ -16,30 +16,9 @@ class App extends Component {
 
         console.log(data);
         this.newPlayerAdder = this.newPlayerAdder.bind(this);
-//        this.redTeamSetUp = this.redTeamSetUp.bind(this);
         this.tradeToBlue = this.tradeToBlue.bind(this);
     }
-  
-//    redTeamSetUp (players) {
-//        let theReds = this.state.redTeam.redAquired;
-//        
-//        this.setState({
-//            players: players
-//        }); 
-//    }
-    
-//    var styles = {
-//      box: {
-//        width: '100px',
-//        height: '100px'
-//      },
-//      in: {
-//        backgroundColor: 'red'
-//      },
-//      out: {
-//        backgroundColor: 'green'
-//      }
-//    };
+
 
     newPlayerAdder (event, players){
         event.preventDefault();
@@ -57,38 +36,30 @@ class App extends Component {
         event.preventDefault();
         
         //make copy of red Team's state with filter
-        let curRedTeam = this.state.redTeam.redAcquired;
-        
-        console.log('The link was clicked.');
+        let newRedTeam = Object.assign({}, this.state.redTeam); 
+
         console.log(IDValue);
         
-        
-        let newRedTeam = curRedTeam.filter(function(teamMember){
+        //remove the selected player from the Reds array
+        let newRedAcquired = newRedTeam.redAcquired.filter(function(teamMember){
             console.log(redsPlayer.name);
-            console.log(teamMember);
-            return teamMember.name != redsPlayer.name;
+            return teamMember != redsPlayer;
         })
         
-           //add that same player to the Blue team array
+        newRedTeam.redAcquired = newRedAcquired;
+        
+                console.log("here", newRedAcquired);
+        
+        //add that same player to the Blue team array
         console.log(this.state.blueTeam.blueAcquired.push(redsPlayer))
-        
-        
+//        
+//        //save state
         this.setState({
-            "redTeam.redAcquired" : newRedTeam
+            redTeam : newRedTeam
         });
         
-        console.log(newRedTeam);
         
-        //the player clicked on the Red Team
-        
-        
-     ;
-        
-        
-        //remove the selected player from the Reds array
-//        let redPlayerRemoved = this.state.redTeam.redAcquired.slice(tradingRedPlayer);
-
-        //save state
+    
     }
     
     render() {
@@ -123,7 +94,7 @@ class App extends Component {
                        key={index}
                        IDValue={index} 
                        redsPlayer={player}
-                       tradeToBlue={this.tradeToBlue}    
+                       tradeToBlue={this.tradeToBlue}   
                     />
                 );
             }, this);
