@@ -69,9 +69,12 @@ class App extends Component {
             return teamMember.name != redsPlayer.name;
         })
         
+           //add that same player to the Blue team array
+        console.log(this.state.blueTeam.blueAcquired.push(redsPlayer))
+        
         
         this.setState({
-            "this.redTeam" : newRedTeam
+            "redTeam.redAcquired" : newRedTeam
         });
         
         console.log(newRedTeam);
@@ -79,8 +82,7 @@ class App extends Component {
         //the player clicked on the Red Team
         
         
-        //add that same player to the Blue team array
-//        console.log(this.state.blueTeam.blueAcquired.push(tradingRedPlayer));
+     ;
         
         
         //remove the selected player from the Reds array
