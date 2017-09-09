@@ -19,6 +19,8 @@ class App extends Component {
         this.tradeToRed = this.tradeToRed.bind(this);
         this.freeAgentsAssignedRed = this.freeAgentsAssignedRed.bind(this);
         this.freeAgentsAssignedBlue = this.freeAgentsAssignedBlue.bind(this);
+        this.redBackToFreeAgency = this.redBackToFreeAgency.bind(this);
+        this.blueBackToFreeAgency = this.blueBackToFreeAgency.bind(this);
     }
 
     newPlayerAdder (event, players){
@@ -43,7 +45,6 @@ class App extends Component {
         let newRedAcquired = newRedTeam.redAcquired.filter(function(teamMember){
             return teamMember !== redsPlayer;
         })
-        
         newRedTeam.redAcquired = newRedAcquired;
         
         //add that same player to the Blue team array
@@ -79,8 +80,7 @@ class App extends Component {
     freeAgentsAssignedRed (bravesPlayer, event) {
        event.preventDefault();
         
-        let curFreeAgent = this.state.players.slice();
-        console.log(curFreeAgent);      
+        let curFreeAgent = this.state.players.slice();  
         let newFreeAgent = curFreeAgent.filter(function(teamMember){
             return teamMember !== bravesPlayer;
         });
@@ -94,8 +94,7 @@ class App extends Component {
     freeAgentsAssignedBlue (bravesPlayer, event) {
        event.preventDefault();
         
-        let curFreeAgent = this.state.players.slice();
-        console.log(curFreeAgent);      
+        let curFreeAgent = this.state.players.slice();      
         let newFreeAgent = curFreeAgent.filter(function(teamMember){
             return teamMember !== bravesPlayer;
         });
@@ -106,24 +105,39 @@ class App extends Component {
         });
     }
     
-    backToFreeAgency (redsPlayer, event) {
+    redBackToFreeAgency (redsPlayer, event) {
         event.preventDefault();
     
-        let newRedTeam = Object.assign({}, this.state.redTeam); 
-        let newRedAcquired = newRedTeam.redAcquired.filter(function(teamMember){
+        let curRedTeam = Object.assign({}, this.state.redTeam);  
+             
+        let newRedTeam = curRedTeam.redAcquired.filter(function(teamMember){
             return teamMember !== redsPlayer;
-        })
+        });
+        curRedTeam.redAcquired = newRedTeam;
         
-        newRedTeam.redAcquired = newRedAcquired;
         this.state.players.push(redsPlayer);
         
-        //save state
         this.setState({
-            redTeam : newRedTeam
+            redTeam : curRedTeam
         });
-        
     }
+    
+    blueBackToFreeAgency (bluesPlayer, event) {
+        event.preventDefault();
 
+        let curBlueTeam = Object.assign({}, this.state.blueTeam);
+             
+        let newBlueTeam = curBlueTeam.blueAcquired.filter(function(teamMember){
+            return teamMember !== bluesPlayer;
+        });
+        curBlueTeam.redAcquired = newBlueTeam;
+
+        this.state.players.push(bluesPlayer);
+        
+        this.setState({
+            blueTeam : curBlueTeam 
+        });
+    }
     
     render() {
         
@@ -140,8 +154,6 @@ class App extends Component {
 //                );
 //            }
         
-        
-        
         const playersUnassigned = 
             this.state.players.map((player, index) => {
                 return (
@@ -156,7 +168,7 @@ class App extends Component {
                 );
             }, this);
         
-        const redplayers = 
+        let redplayers = 
             this.state.redTeam.redAcquired.map(function(player, index){
                 return (
                    <TeamRed
@@ -164,21 +176,23 @@ class App extends Component {
                        IDValue={index} 
                        redsPlayer={player}
                        tradeToBlue={this.tradeToBlue}   
+                       redBackToFreeAgency={this.redBackToFreeAgency}   
                     />
                 );
             }, this);
         
-            const blueplayers = 
-                this.state.blueTeam.blueAcquired.map(function(player, index){
-                    return (
-                        <TeamBlue 
-                            key={index}
-                            IDValue={index}
-                            bluesPlayer={player}
-                            tradeToRed={this.tradeToRed}
-                        />
-                    );
-              }, this);    
+        let blueplayers = 
+            this.state.blueTeam.blueAcquired.map(function(player, index){
+                return (
+                    <TeamBlue 
+                        key={index}
+                        IDValue={index}
+                        bluesPlayer={player}
+                        tradeToRed={this.tradeToRed}
+                        blueBackToFreeAgency={this.blueBackToFreeAgency}
+                    />
+                );
+          }, this);    
 
     return (
 

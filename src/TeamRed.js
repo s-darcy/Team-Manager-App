@@ -7,7 +7,7 @@ class TeamRed extends Component {
         return (
             <li ref='name' className="assignedPlayers">{this.props.redsPlayer.name}
                 <button onClick={(event) => this.props.tradeToBlue(this.props.redsPlayer, this.props.IDValue, event)} className="tradePlayerButton">Trade</button>
-                <button className="freeAgentButton">Free</button>
+                <button onClick={(event) => this.props.redBackToFreeAgency(this.props.redsPlayer,  event)}className="freeAgentButton">Free</button>
             </li>
         );
     }    
