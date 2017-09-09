@@ -21,22 +21,25 @@ const data = {
             {"name": "Martin Prado", "position": "third base"},
             {"name": "Tim Hudson", "position": "pitcher"}
         ],
-        "title": "Red Team",
-        "playerTurn": 0,
-        "redTeamCount": 0
+        "title": "Red Team"
     },
     "blueTeam": {
         "blueAcquired": [
             {"name": "John Smoltz", "position": "pitcher"},
             {"name": "Brian Jordan", "position": "left field"}
         ],
-        "title": "Blue Team",
-        "playerTurn": 0,
-        "blueTeamCount": 0 
+        "title": "Blue Team"
     },
     "addNewPlayers" : {
-        "newPlayerName" : '',
-        "newPlayerCount" : 0
+        "newPlayerName" : ''
+    },
+    "copyOriginal" : {
+        "copyPlayers" : [],
+        "copyRedTeam" : {
+            "copyRedAcquired" : []
+        },"copyBlueTeam" : {
+            "copyBlueAcquired" : []
+        }
     }
  };
  

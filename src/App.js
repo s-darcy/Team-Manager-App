@@ -7,6 +7,7 @@ import AddNewPlayers from './AddNewPlayers';
 import ResetTeams from './ResetTeams';
 import Player from './Player';
 import data from './data';
+import registerServiceWorker from './registerServiceWorker';
 
 class App extends Component {
     
@@ -21,6 +22,8 @@ class App extends Component {
         this.freeAgentsAssignedBlue = this.freeAgentsAssignedBlue.bind(this);
         this.redBackToFreeAgency = this.redBackToFreeAgency.bind(this);
         this.blueBackToFreeAgency = this.blueBackToFreeAgency.bind(this);
+        this.copyOriginal = this.copyOriginal.bind(this);
+        this.resetOriginal = this.resetOriginal.bind(this);
     }
 
     newPlayerAdder (event, players){
@@ -130,7 +133,7 @@ class App extends Component {
         let newBlueTeam = curBlueTeam.blueAcquired.filter(function(teamMember){
             return teamMember !== bluesPlayer;
         });
-        curBlueTeam.redAcquired = newBlueTeam;
+        curBlueTeam.blueAcquired = newBlueTeam;
 
         this.state.players.push(bluesPlayer);
         
@@ -138,21 +141,49 @@ class App extends Component {
             blueTeam : curBlueTeam 
         });
     }
+           
+    //Resets the teams back to the original state
+    copyOriginal () {
+        let curPlayers = this.state.players.slice();
+        let curRedTeam = this.state.redTeam.redAcquired.slice();
+        let curBlueTeam = this.state.blueTeam.blueAcquired.slice();
+        
+        this.setState({
+            copyPlayers : curPlayers 
+        });
+        this.setState({
+            copyRedTeam : curRedTeam
+        });
+        this.setState({
+            copyBlueTeam : curBlueTeam 
+        });    
+    }
+    
+     componentDidMount() {
+        window.addEventListener('load', this.copyOriginal);
+     }
+
+    resetOriginal (){
+        let copyPlayers = this.state.copyPlayers.slice();
+        let copyRedTeam = this.state.copyRedTeam.slice();
+        let copyBlueTeam = this.state.copyBlueTeam.slice();
+        
+        this.state.players.push(copyPlayers);
+        this.state.redTeam.redAcquired.push(copyRedTeam);
+        this.state.blueTeam.blueAcquired.push(copyBlueTeam);
+        
+        this.setState({
+            players : copyPlayers 
+        }); 
+        this.setState({
+            redTeam :  copyRedTeam
+        });
+        this.setState({
+            blueTeam : copyBlueTeam
+        });    
+    }
     
     render() {
-        
-//        //Original Teams
-        //So create a copy immediate of the Players array and store in separate object in data structure called copy. When person clicks reset dump the copy's info back into Player's
-        
-        
-//        const originalTeams = data.slice();
-//        
-//        //Resets the teams back to the original state
-//            Reset() {
-//                return (
-//                    {originalTeams}
-//                );
-//            }
         
         const playersUnassigned = 
             this.state.players.map((player, index) => {
@@ -164,6 +195,7 @@ class App extends Component {
                        freeAgentsAssigned={this.freeAgentsAssigned}
                        freeAgentsAssignedRed={this.freeAgentsAssignedRed}
                        freeAgentsAssignedBlue={this.freeAgentsAssignedBlue}
+                       reset={this.resetOriginal}
                     />  
                 );
             }, this);
@@ -176,7 +208,8 @@ class App extends Component {
                        IDValue={index} 
                        redsPlayer={player}
                        tradeToBlue={this.tradeToBlue}   
-                       redBackToFreeAgency={this.redBackToFreeAgency}   
+                       redBackToFreeAgency={this.redBackToFreeAgency}
+                       reset={this.resetOriginal}
                     />
                 );
             }, this);
@@ -190,6 +223,7 @@ class App extends Component {
                         bluesPlayer={player}
                         tradeToRed={this.tradeToRed}
                         blueBackToFreeAgency={this.blueBackToFreeAgency}
+                        reset={this.resetOriginal}
                     />
                 );
           }, this);    
@@ -224,7 +258,9 @@ class App extends Component {
             <AddNewPlayers 
                 newPlayerAdder={this.newPlayerAdder}
             />
-            <ResetTeams />
+            <ResetTeams
+                reset={this.resetOriginal}
+            />
         </div> 
     );
   }
