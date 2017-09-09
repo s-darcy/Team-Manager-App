@@ -7,8 +7,8 @@ class FreeAgents extends Component {
         return (
             <ul>
                 <li className="bravesPlayers">{this.props.bravesPlayer.name}
-                    <button className="redButton">Red</button>
-                    <button className="blueButton">Blue</button>
+                    <button onClick={(event) => this.props.freeAgentsAssignedRed      (this.props.bravesPlayer, event)} className="redButton">Red</button>
+                    <button onClick={(event) => this.props.freeAgentsAssignedBlue      (this.props.bravesPlayer, event)} className="blueButton">Blue</button>
                 </li>    
             </ul>  
         );    
