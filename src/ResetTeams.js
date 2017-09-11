@@ -4,11 +4,7 @@ class ResetTeams extends Component {
     render(){
         
         return (
-            <div className="resetTeam">
-                <h2>Reset Team Assignment</h2>
-                <p>By pushing the 'Reset Teams' button below, you will be clearing your current team's players back to their original assignments. Are you sure that you want to change the team's?</p>
-                <button onClick={(event) => this.props.reset} className="resetButton">Reset</button>
-            </div>
+                <button onClick={(event) => this.props.reset(this.props.originalPlayers, this.props.originalRedTeam, this.props.originalBlueTeam, event)} className="resetButton">Reset</button>
         );
     }
 }            

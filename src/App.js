@@ -163,24 +163,46 @@ class App extends Component {
         window.addEventListener('load', this.copyOriginal);
      }
 
-    resetOriginal (){
-        let copyPlayers = this.state.copyPlayers.slice();
-        let copyRedTeam = this.state.copyRedTeam.slice();
-        let copyBlueTeam = this.state.copyBlueTeam.slice();
+    resetOriginal (originalPlayers, originalRedTeam, originalBlueTeam, event){
+        event.preventDefault();
         
-        this.state.players.push(copyPlayers);
-        this.state.redTeam.redAcquired.push(copyRedTeam);
-        this.state.blueTeam.blueAcquired.push(copyBlueTeam);
-        
-        this.setState({
-            players : copyPlayers 
-        }); 
-        this.setState({
-            redTeam :  copyRedTeam
+        let playersToReset = this.state.player.slice();
+        let redTeamToReset = Object.assign({}, this.state.redTeam);
+        let blueTeamToReset = Object.assign({}, this.state.blueTeam);
+        console.log(playersToReset);
+        console.log(redTeamToReset);
+;        
+        //Free Agent Original Players
+        let playersComparison = playersToReset.filter(function(teamMembers){
+            return teamMembers !== originalPlayers;
         });
+        playersToReset = playersComparison;
+        this.state.players.push(originalPlayers);
         this.setState({
-            blueTeam : copyBlueTeam
-        });    
+            players : playersToReset
+        }); 
+        
+        
+        //Red Team Original Players
+        let redTeamComparison = redTeamToReset.filter(function(teamMembers){
+            return teamMembers !== originalRedTeam;
+        });
+        redTeamToReset.redAcquired = playersComparison;
+        this.state.redTeam.redAcquired.push(originalRedTeam);
+        this.setState({
+            redTeam :  redTeamToReset
+        });
+        
+
+        // Blue Team Original Players
+        let blueTeamComparison = blueTeamToReset.filter(function(teamMembers){
+            return teamMembers !== originalBlueTeam;
+        });
+        blueTeamToReset.blueAcquired = playersComparison;
+        this.state.blueTeam.blueAcquired.push(originalBlueTeam);
+        this.setState({
+            blueTeam : blueTeamToReset
+        }); 
     }
     
     render() {
@@ -226,10 +248,40 @@ class App extends Component {
                         reset={this.resetOriginal}
                     />
                 );
-          }, this);    
+          }, this);
+         
+        let playersReset = 
+             this.state.copyOriginal.copyPlayers.map(function(players,  index){
+                return (
+                    <ResetTeams
+                        originalPlayers={players}
+                        reset={this.resetOriginal}
+                        copy={this.copyOriginal}
+                    />
+                 );
+          }, this);
+        
+        let redTeamReset  = this.state.copyOriginal.copyRedTeam.copyRedAcquired.map(function(players, index){
+                return (
+                    <ResetTeams
+                        originalRedTeam={players}
+                        reset={this.resetOriginal}
+                        copy={this.copyOriginal}
+                    />
+                 );
+          }, this);
+        
+        let blueTeamReset =  this.state.copyOriginal.copyBlueTeam.copyBlueAcquired.map(function(players, index){
+                return (
+                    <ResetTeams
+                        originalBlueTeam={players}
+                        reset={this.resetOriginal}
+                        copy={this.copyOriginal}
+                    />
+                 );
+          }, this);
 
     return (
-
         <div id="container">
             <h1 id="teamManagerApp">Team Manager App</h1>
                <div className="teamRed">
@@ -258,9 +310,13 @@ class App extends Component {
             <AddNewPlayers 
                 newPlayerAdder={this.newPlayerAdder}
             />
-            <ResetTeams
-                reset={this.resetOriginal}
-            />
+            <div className="resetTeam">
+                <h2>Reset Team Assignment</h2>
+                <p>By pushing the 'Reset Teams' button below, you will be clearing your current team's players back to their original assignments. Are you sure that you want to change the team's?</p>
+                {playersReset}
+                {redTeamReset}
+                {blueTeamReset}
+            </div>
         </div> 
     );
   }
